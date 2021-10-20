@@ -1,3 +1,4 @@
+using HumanGuide.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,8 @@ namespace HumanGuide.Presentation.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HumanGuide.Presentation.WebApi", Version = "v1" });
             });
+
+            services.AddPersistenceLayer(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
