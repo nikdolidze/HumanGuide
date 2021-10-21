@@ -13,7 +13,7 @@ namespace HumanGuide.Core.Domain.Basics
         public virtual string DeletedBy { get; set; }
 
 
-      
+
 
 
     }

@@ -1,7 +1,8 @@
 ﻿namespace HumanGuide.Core.Application.Interfaces.Repositories
 {
-  public  interface IUnitOfWork
+    public interface IUnitOfWork
     {
-         IHumanRepository HumanRepository { get; }
+        IHumanRepository HumanRepository { get; }
+
     }
 }
