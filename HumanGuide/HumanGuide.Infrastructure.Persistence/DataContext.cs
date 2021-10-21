@@ -1,5 +1,6 @@
 ﻿using HumanGuide.Core.Domain.Basics;
 using HumanGuide.Core.Domain.Entities;
+using HumanGuide.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -32,7 +33,7 @@ namespace HumanGuide.Infrastructure.Persistence
             return base.SaveChanges();
         }
         private void Audition(EntityEntry<AuditableEntity> entry)
-        {  
+        {
             // TODO  : user-ის მინიჭება იუზერმენეჯმენტის დამატების შემდეგ უნდა შეიცვალოს.
             var user = Environment.UserName;
             switch (entry.State)
@@ -65,7 +66,10 @@ namespace HumanGuide.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-        
+            modelBuilder.ApplyConfiguration(new CityConfiguration());
+            modelBuilder.ApplyConfiguration(new ConnectedHumanConfiguration());
+            modelBuilder.ApplyConfiguration(new ConnecteHumanConfiguration());
+            modelBuilder.ApplyConfiguration(new HumanConfigurations());
         }
 
     }
