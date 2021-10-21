@@ -1,3 +1,4 @@
+using HumanGuide.Core.Application;
 using HumanGuide.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace HumanGuide.Presentation.WebApi
             });
 
             services.AddPersistenceLayer(Configuration);
+            services.AddApplicatonLayer(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
