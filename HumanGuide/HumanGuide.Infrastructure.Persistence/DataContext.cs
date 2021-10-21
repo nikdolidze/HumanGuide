@@ -68,8 +68,10 @@ namespace HumanGuide.Infrastructure.Persistence
         {
             modelBuilder.ApplyConfiguration(new CityConfiguration());
             modelBuilder.ApplyConfiguration(new ConnectedHumanConfiguration());
-            modelBuilder.ApplyConfiguration(new ConnecteHumanConfiguration());
+            modelBuilder.ApplyConfiguration(new PhoneConfiguration());
             modelBuilder.ApplyConfiguration(new HumanConfigurations());
+            modelBuilder.ApplyConfiguration(new Human2PhoneConfiguration());
+
         }
 
     }

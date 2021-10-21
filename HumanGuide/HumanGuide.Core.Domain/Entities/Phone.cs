@@ -1,5 +1,6 @@
 ﻿using HumanGuide.Core.Domain.Basics;
 using HumanGuide.Core.Domain.Enums;
+using System.Collections.Generic;
 
 namespace HumanGuide.Core.Domain.Entities
 {
@@ -7,7 +8,7 @@ namespace HumanGuide.Core.Domain.Entities
     {
         public PhoneType Type { get; set; }
         public string Number { get; set; }
-        public uint HumanId { get; set; }
-        public Human Human { get; set; }
+        public ICollection<Human2Phone> Human2Phones { get; set; }
+
     }
 }

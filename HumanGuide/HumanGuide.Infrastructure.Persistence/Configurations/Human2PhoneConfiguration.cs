@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HumanGuide.Infrastructure.Persistence.Configurations
 {
-    class ConnecteHumanConfiguration : IEntityTypeConfiguration<ConnecteHuman>
+    class Human2PhoneConfiguration : IEntityTypeConfiguration<Human2Phone>
     {
-        public void Configure(EntityTypeBuilder<ConnecteHuman> builder)
+        public void Configure(EntityTypeBuilder<Human2Phone> builder)
         {
             builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
         }
     }
 }
+

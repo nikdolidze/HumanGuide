@@ -1,5 +1,4 @@
 ﻿using HumanGuide.Core.Application.Interfaces;
-using HumanGuide.Core.Application.Interfaces.Repositories;
 using HumanGuide.Infrastructure.Persistence.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

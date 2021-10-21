@@ -15,7 +15,8 @@ namespace HumanGuide.Core.Domain.Entities
         public string Image { get; set; }
         public uint CityId { get; set; }
         public City City { get; set; }
-        public List<Phone> Phones { get; set; }
-        public List<ConnecteHuman> ConnecteHumans { get; set; }
+        public ICollection<Human2Phone> Human2Phones { get; set; }
+
+        public ICollection<ConnecteHuman> ConnecteHumans { get; set; }
     }
 }
