@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HumanGuide.Infrastructure.Persistence.Implementations
+namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
 {
     public class HumanRepository : Repository<Human>, IHumanRepository
     {

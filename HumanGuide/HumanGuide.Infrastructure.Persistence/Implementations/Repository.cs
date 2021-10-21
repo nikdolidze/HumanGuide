@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HumanGuide.Infrastructure.Persistence
+namespace HumanGuide.Infrastructure.Persistence.Implementations
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
