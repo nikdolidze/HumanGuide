@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HumanGuide.Infrastructure.Persistence
 {
-    internal abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly DataContext context;
         public Repository(DataContext context) => this.context = context;
