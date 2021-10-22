@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HumanGuide.Core.Application.Interfaces.Repositories
 {
-   public interface IConnectedConnecteHumanRepository : IRepository<ConnecteHuman>
+   public interface IConnecteHumanRepository : IRepository<ConnecteHuman>
     {
     }
 }

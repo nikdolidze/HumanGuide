@@ -12,7 +12,7 @@ namespace HumanGuide.Core.Domain.Entities
         public Gender Gender { get; set; }
         public string PersonalNo { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string Image { get; set; }
+        public string ImageAddress { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
         public ICollection<Human2Phone> Human2Phones { get; set; }

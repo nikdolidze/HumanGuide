@@ -5,8 +5,11 @@ using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Domain.Entities;
 using HumanGuide.Core.Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,9 +26,8 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             public string PersonalNo { get; set; }
             public DateTime DarteOfBirth { get; set; }
             public int City { get; set; }
-            public List<SetPhoneDto> Phones { get; set; }
-            public string Image { get; set; }
-            public List<int> ConnecteHumanIds { get; set; }
+            public ICollection<SetPhoneDto> Phones { get; set; }
+            public ICollection<int> ConnecteHumanIds { get; set; }
         }
         public class Handler : IRequestHandler<Request>
         {
@@ -60,12 +62,16 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 await unit.Human2PhoneRepository.CreaRangeteAsync(human2Phones);
 
                 // ConnectedHumans-ის შექმნა
-                var connectedHumans = HelperClass.CreateListOfConnecteHuman(human.Id, request.ConnecteHumanIds);
+                var connectedHumans = HelperClass.CreateListOfConnecteHuman(human.Id, request.ConnecteHumanIds.ToList());
                 await unit.ConnecteHumanRepository.CreaRangeteAsync(connectedHumans);
+
+                
 
                 return Unit.Value;
             }
+            
         }
+       
 
     }
 }

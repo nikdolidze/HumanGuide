@@ -14,7 +14,6 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
             builder.Property(x => x.FirstName).HasMaxLength(50).IsRequired();
             builder.Property(x => x.LastName).HasMaxLength(50).IsRequired();
             builder.Property(x => x.PersonalNo).HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Image).IsRequired();
         }
     }
 }
