@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using HumanGuide.Core.Application;
 using HumanGuide.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,7 @@ namespace HumanGuide.Presentation.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HumanGuide.Presentation.WebApi", Version = "v1" });
