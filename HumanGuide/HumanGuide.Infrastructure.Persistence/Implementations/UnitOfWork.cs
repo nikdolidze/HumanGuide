@@ -9,11 +9,19 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
         private IHumanRepository humanRepository;
         private ICityRepository cityRepository;
         private IPhoneRepository phoneRepository;
+        private IHuman2PhoneRepository human2PhoneRepository;
+        private IConnectedConnecteHumanRepository connecteHumanRepository;
+
         private readonly DataContext context;
         public UnitOfWork(DataContext context) => this.context = context;
+        
 
         public IHumanRepository HumanRepository => humanRepository ??= new HumanRepository(context);
         public ICityRepository CityRepository => cityRepository ??= new CityRepository(context);
         public IPhoneRepository PhoneRepository => phoneRepository ??= new PhoneRepository(context);
+
+        public IHuman2PhoneRepository Human2PhoneRepository => human2PhoneRepository ??= new Human2PhoneRepository(context);
+
+        public IConnectedConnecteHumanRepository ConnecteHumanRepository => connecteHumanRepository ??= new ConnecteHumanRepository(context);
     }
 }

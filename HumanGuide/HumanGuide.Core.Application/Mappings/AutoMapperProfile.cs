@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HumanGuide.Core.Application.DTOs;
+using HumanGuide.Core.Application.Features.Humans.Commands;
 using HumanGuide.Core.Domain.Entities;
 
 namespace HumanGuide.Core.Application.Mappings
@@ -8,8 +9,17 @@ namespace HumanGuide.Core.Application.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<SetPhoneDto, Phone>();
+            CreateMap<SetPhoneDto, Phone>().ReverseMap();
             CreateMap<SetCityDto, City>();
+
+            //დროებითია ეს CreateMap
+            CreateMap<CreateHumanCommand.Request, Human>()
+            .ForMember(x => x.City, y => y.Ignore())
+                ;
+
+            CreateMap<SetHuman2PhoneDto, Human2Phone>();
+
         }
+
     }
 }

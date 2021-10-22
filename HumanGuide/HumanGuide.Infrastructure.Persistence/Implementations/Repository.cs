@@ -21,8 +21,13 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
             context.Set<TEntity>().Add(entity);
             return await context.SaveChangesAsync();
         }
+        public virtual async Task<int> CreaRangeteAsync(IEnumerable<TEntity> entity)
+        {
+            context.Set<TEntity>().AddRange(entity);
+            return await context.SaveChangesAsync();
+        }
         // read
-        public virtual async Task<TEntity> ReadAsync(uint id)
+        public virtual async Task<TEntity> ReadAsync(int id)
         {
             return await context.Set<TEntity>().FindAsync(id);
         }
@@ -40,14 +45,14 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
             context.Set<TEntity>().Update(entity);
             return await context.SaveChangesAsync();
         }
-        public virtual async Task<int> UpdateAsync(uint id, TEntity entity)
+        public virtual async Task<int> UpdateAsync(int id, TEntity entity)
         {
             var existing = context.Set<TEntity>().Find(id);
             this.context.Entry(existing).CurrentValues.SetValues(entity);
             return await context.SaveChangesAsync();
         }
         // delete
-        public virtual async Task<int> DeleteAsync(uint id)
+        public virtual async Task<int> DeleteAsync(int id)
         {
             var item = await this.ReadAsync(id);
             context.Set<TEntity>().Remove(item);

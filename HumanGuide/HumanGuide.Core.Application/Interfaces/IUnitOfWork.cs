@@ -7,6 +7,7 @@ namespace HumanGuide.Core.Application.Interfaces
         IHumanRepository HumanRepository { get; }
         ICityRepository CityRepository { get; }
         IPhoneRepository PhoneRepository { get; }
-
+        IHuman2PhoneRepository Human2PhoneRepository { get; }
+        IConnectedConnecteHumanRepository ConnecteHumanRepository { get; }
     }
 }
