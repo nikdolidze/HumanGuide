@@ -7,7 +7,6 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,7 +42,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 await unit.HumanRepository.UpdateAsync(human.Id, human);
 
 
-                /// უნდა დავადო შეზღუდვა, რომ პერსონალზე ტიპის მიხედვით მხოლოდ 1 ტელეფონის მითითევბაა შესაძლებელი
+                /// უნდა დავადო შეზღუდვა, რომ პერსონალზე ტიპის მიხედვით მხოლოდ 1 ტელეფონის მითითებაა შესაძლებელი
                 var phonesDb = (await unit.Human2PhoneRepository.ReadAsync(x => x.HumanId == request.Id)).Select(x => x.Phone);
                 if (!(request.Phones != null && request.Phones.Any()))
                     return Unit.Value;

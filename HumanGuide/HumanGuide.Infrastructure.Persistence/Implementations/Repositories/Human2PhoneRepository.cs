@@ -11,12 +11,12 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
 {
     class Human2PhoneRepository : Repository<Human2Phone>, IHuman2PhoneRepository
     {
-        public Human2PhoneRepository(DataContext context) : base(context){}
+        public Human2PhoneRepository(DataContext context) : base(context) { }
 
         private IQueryable<Human2Phone> Including =>
          this.context.Human2Phone.Include(x => x.Phone);
 
-       
+
 
 
         public override async Task<IEnumerable<Human2Phone>> ReadAsync(Expression<Func<Human2Phone, bool>> predicate)

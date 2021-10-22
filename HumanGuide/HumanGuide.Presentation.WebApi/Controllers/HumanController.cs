@@ -26,5 +26,15 @@ namespace HumanGuide.Presentation.WebApi.Controllers
         {
             await mediator.Send(request);
         }
+
+        [HttpPut]
+        [Route("UploadImage")]
+        public async Task UploadImage([FromForm] UploadImageCommand.Requset requset)
+        {
+            await mediator.Send(requset);
+
+        }
+      
+
     }
 }

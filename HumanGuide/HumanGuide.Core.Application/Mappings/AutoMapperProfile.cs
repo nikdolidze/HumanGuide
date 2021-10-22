@@ -15,13 +15,11 @@ namespace HumanGuide.Core.Application.Mappings
             //დროებითია ეს CreateMap
             CreateMap<CreateHumanCommand.Request, Human>()
             .ForMember(x => x.City, y => y.Ignore())
-            .ForMember(x => x.ConnecteHumans, y => y.Ignore())
-                ;
+            .ForMember(x => x.ConnecteHumans, y => y.Ignore());
 
             CreateMap<SetHuman2PhoneDto, Human2Phone>();
 
-           CreateMap<UpdateHumanCommand.UpdateRequest, Human>()
-               ;
+            CreateMap<UpdateHumanCommand.UpdateRequest, Human>();
         }
 
     }
