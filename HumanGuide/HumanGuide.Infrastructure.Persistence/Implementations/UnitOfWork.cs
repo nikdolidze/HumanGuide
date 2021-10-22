@@ -14,7 +14,7 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
 
         private readonly DataContext context;
         public UnitOfWork(DataContext context) => this.context = context;
-        
+
 
         public IHumanRepository HumanRepository => humanRepository ??= new HumanRepository(context);
         public ICityRepository CityRepository => cityRepository ??= new CityRepository(context);

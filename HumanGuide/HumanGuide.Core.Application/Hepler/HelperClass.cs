@@ -1,17 +1,18 @@
-﻿using HumanGuide.Core.Domain.Entities;
+﻿using HumanGuide.Core.Application.DTOs;
+using HumanGuide.Core.Domain.Entities;
 using System.Collections.Generic;
 
 namespace HumanGuide.Core.Application.Hepler
 {
     public class HelperClass
     {
-        public static List<ConnecteHuman> CreateListOfConnecteHuman(int humanId, List<int> connecteHumanIds)
+        public static List<ConnecteHuman> CreateListOfConnecteHuman(int humanId, List<SetConnecteHumanDto> connecteHumans)
         {
             List<ConnecteHuman> list = new();
 
-            foreach (var item in connecteHumanIds)
+            foreach (var connecteHuman in connecteHumans)
             {
-                list.Add(new ConnecteHuman { HumanId = humanId, ConnecteHumanId = item });
+                list.Add(new ConnecteHuman { HumanId = humanId, ConnecteHumanId = connecteHuman.ConnecteHumanId, ConnectionType = connecteHuman.ConnectionType });
             }
             return list;
         }
