@@ -3,7 +3,6 @@ using HumanGuide.Core.Application.DTOs;
 using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Domain.Entities;
-using HumanGuide.Core.Domain.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -15,15 +14,9 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 {
     public class CreateHumanCommand
     {
-        public class Request : IRequest
+        public class Request : CommonRequest
         {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public Gender Gender { get; set; }
-            public string PersonalNo { get; set; }
-            public DateTime DarteOfBirth { get; set; }
-            public int City { get; set; }
-            public ICollection<SetPhoneDto> Phones { get; set; }
+
             public ICollection<SetConnecteHumanDto> ConnecteHumans { get; set; }
         }
         public class Handler : IRequestHandler<Request>
@@ -41,7 +34,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 // TODO დასამატებელი შეზღუდვები და როლბექი
 
                 // ქალაქის გადამოწმება ცნობარში
-                var cityDb = await unit.CityRepository.ReadAsync(request.City);
+                var cityDb = await unit.CityRepository.ReadAsync(request.CityId);
                 if (cityDb == null)
                     throw new Exception("მოუთითეთ ქალაქი სწორად");
 
@@ -73,6 +66,10 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 return Unit.Value;
             }
 
+        }
+        public class Validator : CommonValidator<Request>
+        {
+            public Validator(IUnitOfWork unit) : base(unit) { }
         }
 
 
