@@ -1,4 +1,5 @@
 ﻿using HumanGuide.Core.Application.Features.Humans.Commands;
+using HumanGuide.Core.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,6 +17,12 @@ namespace HumanGuide.Presentation.WebApi.Controllers
 
         [HttpPost]
         public async Task Create([FromBody] CreateHumanCommand.Request request)
+        {
+            await mediator.Send(request);
+        }
+
+        [HttpPut]
+        public async Task Update([FromBody] UpdateHumanCommand.UpdateRequest request)
         {
             await mediator.Send(request);
         }

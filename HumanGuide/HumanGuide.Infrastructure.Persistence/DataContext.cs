@@ -16,6 +16,7 @@ namespace HumanGuide.Infrastructure.Persistence
         {
         }
         public DbSet<Human> Humans { get; set; }
+        public DbSet<Human2Phone> Human2Phone { get; internal set; }
 
         #region SaveChanges -ების გადატვირთვა
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

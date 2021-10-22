@@ -20,6 +20,8 @@ namespace HumanGuide.Core.Application.Mappings
 
             CreateMap<SetHuman2PhoneDto, Human2Phone>();
 
+           CreateMap<UpdateHumanCommand.UpdateRequest, Human>()
+               ;
         }
 
     }
