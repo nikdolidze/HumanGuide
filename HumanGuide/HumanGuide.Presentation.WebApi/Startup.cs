@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using HumanGuide.Core.Application;
+using HumanGuide.Infrastructure.Logger;
 using HumanGuide.Infrastructure.Persistence;
 using HumanGuide.Presentation.WebApi.Extensions.Middlewares;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,7 @@ namespace HumanGuide.Presentation.WebApi
 
             services.AddPersistenceLayer(Configuration);
             services.AddApplicatonLayer(Configuration);
+            services.AddLoggerLayer(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

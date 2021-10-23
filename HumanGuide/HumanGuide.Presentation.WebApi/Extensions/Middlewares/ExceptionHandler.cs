@@ -13,11 +13,11 @@ namespace HumanGuide.Presentation.WebApi.Extensions.Middlewares
     public class ExceptionHandler
     {
         private readonly RequestDelegate next;
-        private readonly ILogger logger;
 
-        public ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> logger) =>
-            (this.next, this.logger) = (next, logger);
-
+        public ExceptionHandler(RequestDelegate next)
+        {
+            this.next = next;
+        }
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -44,8 +44,8 @@ namespace HumanGuide.Presentation.WebApi.Extensions.Middlewares
                     statusCode = (int)e.StatusCode;
                     break;
                 case Exception _:
-                    logger.LogError(exception, exception.Message);
                     exception = new Exception("Internal Server Error");
+                    Serilog.Log.Error(exception, exception.Message);
                     break;
             }
 
