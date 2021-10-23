@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using HumanGuide.Core.Application;
 using HumanGuide.Infrastructure.Persistence;
+using HumanGuide.Presentation.WebApi.Extensions.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +43,8 @@ namespace HumanGuide.Presentation.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HumanGuide.Presentation.WebApi v1"));
             }
+            app.UseMiddleware<ExceptionHandler>();
+
 
             app.UseHttpsRedirection();
 

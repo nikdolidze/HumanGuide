@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Domain.Entities;
 using HumanGuide.Core.Domain.Enums;
@@ -35,14 +36,14 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             {
                 var human = await unit.HumanRepository.ReadAsync(request.HumanId);
                 if (human == null)
-                    throw new Exception("ფიზიკური პირი ვერ მოიძებნა");
+                    throw new EntityNotFoundException("ფიზიკური პირი ვერ მოიძებნა");
                 var connectedHuman = await unit.HumanRepository.CheckAsync(x => x.Id == request.ConnecteHumanId);
                 if (!connectedHuman)
-                    throw new Exception("დაკავშირებული პირი დამატებული უნდა იყოს ფიზიკური პირების რეესტრში");
+                    throw new EntityNotFoundException("დაკავშირებული პირი დამატებული უნდა იყოს ფიზიკური პირების რეესტრში");
 
                 var connectedhuman = await unit.ConnecteHumanRepository.CheckAsync(x => x.HumanId == request.HumanId && x.ConnectionType == request.ConnectionType && x.ConnecteHumanId == request.ConnecteHumanId);
                 if (connectedhuman)
-                    throw new Exception("დაკავშირებული უკვე დამატებულია");
+                    throw new EntityNotFoundException("დაკავშირებული უკვე დამატებულია");
 
                 var connectedHumanDb = mapper.Map<ConnecteHuman>(request);
                 connectedHumanDb.HumanId = request.HumanId;

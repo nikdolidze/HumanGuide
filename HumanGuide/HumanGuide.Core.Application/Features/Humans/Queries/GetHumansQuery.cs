@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HumanGuide.Core.Application.DTOs;
+using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
 using System;
@@ -31,7 +32,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
             {
                 var human = await unit.HumanRepository.ReadAsync(request.Id);
                 if (human == null)
-                    throw new Exception("ჩანაწერი ვერ მოიძებნა");
+                    throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");
 
                 return await Task.FromResult(mapper.Map<GetHumanDto>(human));
             }

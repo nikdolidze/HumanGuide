@@ -1,4 +1,5 @@
-﻿using HumanGuide.Core.Application.Interfaces;
+﻿using HumanGuide.Core.Application.Exceptions;
+using HumanGuide.Core.Application.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
@@ -25,7 +26,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             {
                 var human = await unit.HumanRepository.ReadAsync(request.Id);
                 if (human == null)
-                    throw new Exception("მიუთითეთ აიდი ბენეფიციარი სწორად");
+                    throw new EntityNotFoundException("მიუთითეთ აიდი ბენეფიციარი სწორად");
 
                 // DOTO Reflection-ით უნდა წამოვიღო Human-ის კოლექციის ტიპის ველები და თუ ბრმა აქვს reqquest.id-ისთან წავშალო
 

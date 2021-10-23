@@ -1,4 +1,5 @@
-﻿using HumanGuide.Core.Application.Interfaces;
+﻿using HumanGuide.Core.Application.Exceptions;
+using HumanGuide.Core.Application.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
@@ -25,7 +26,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             {
                 var connectedHuman = await unit.ConnecteHumanRepository.ReadAsync(request.Id);
                 if (connectedHuman == null)
-                    throw new Exception("ჩანაწერი ვერ მოიძებნა");
+                    throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");
                 await unit.ConnecteHumanRepository.DeleteAsync(connectedHuman);
 
                 return Unit.Value;

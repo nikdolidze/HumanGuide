@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HumanGuide.Core.Application.DTOs;
+using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Domain.Entities;
@@ -36,7 +37,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 // ქალაქის გადამოწმება ცნობარში
                 var cityDb = await unit.CityRepository.ReadAsync(request.CityId);
                 if (cityDb == null)
-                    throw new Exception("მოუთითეთ ქალაქი სწორად");
+                    throw new EntityNotFoundException("მოუთითეთ ქალაქი სწორად");
 
                 // Human-ის შექმნა
                 var human = mapper.Map<Human>(request);

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
@@ -35,7 +36,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 
                 var humanDb = await unit.HumanRepository.ReadAsync(request.HumanId);
                 if (humanDb == null)
-                    throw new Exception("ჩანაწერი ვერ მოიძებნა");
+                    throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");
 
                 humanDb.ImageAddress = (await HelperClass.UploadImage(request.Image));
                 await unit.HumanRepository.UpdateAsync(humanDb);
