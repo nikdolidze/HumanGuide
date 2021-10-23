@@ -1,5 +1,4 @@
 ﻿using HumanGuide.Core.Application.Features.Humans.Commands;
-using HumanGuide.Core.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,7 +33,18 @@ namespace HumanGuide.Presentation.WebApi.Controllers
             await mediator.Send(requset);
 
         }
-      
 
+        [HttpPut("CreateConnectedHuman/{humanId}")]
+        public async Task CreateConnectedHuman(int humanId, [FromBody] CreateConnectedHuman.CreateRequest request)
+        {
+            request.SetId(humanId);
+            await mediator.Send(request);
+        }
+
+        [HttpPut("DeleteConnectedHuman/{id}")]
+        public async Task DeleteConnectedHuman(int id)
+        {
+            await mediator.Send(new DeleteConnectedHuman.DeleteRequest(id));
+        }
     }
 }
