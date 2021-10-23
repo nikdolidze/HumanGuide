@@ -41,10 +41,16 @@ namespace HumanGuide.Presentation.WebApi.Controllers
             await mediator.Send(request);
         }
 
-        [HttpPut("DeleteConnectedHuman/{id}")]
+        [HttpDelete("DeleteConnectedHuman/{id}")]
         public async Task DeleteConnectedHuman(int id)
         {
             await mediator.Send(new DeleteConnectedHuman.DeleteRequest(id));
+        }
+
+        [HttpDelete("DeleteHuman/{id}")]
+        public async Task DeleteHuman(int id)
+        {
+            await mediator.Send(new DeleteHumanCommand.Request(id));
         }
     }
 }
