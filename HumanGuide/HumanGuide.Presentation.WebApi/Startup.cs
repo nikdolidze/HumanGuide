@@ -5,10 +5,13 @@ using HumanGuide.Infrastructure.Persistence;
 using HumanGuide.Presentation.WebApi.Extensions.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HumanGuide.Presentation.WebApi
 {
@@ -34,6 +37,9 @@ namespace HumanGuide.Presentation.WebApi
             services.AddPersistenceLayer(Configuration);
             services.AddApplicatonLayer(Configuration);
             services.AddLoggerLayer(Configuration);
+            services.AddMultiLingualSupport();
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
