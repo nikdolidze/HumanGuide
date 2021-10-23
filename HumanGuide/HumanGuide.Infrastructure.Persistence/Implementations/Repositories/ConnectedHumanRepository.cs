@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
 {
-    class ConnecteHumanRepository : Repository<ConnecteHuman>, IConnecteHumanRepository
+    class ConnectedHumanRepository : Repository<ConnectedHuman>, IConnectedHumanRepository
     {
-        public ConnecteHumanRepository(DataContext context) : base(context)
+        public ConnectedHumanRepository(DataContext context) : base(context)
         {
         }
      

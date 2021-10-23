@@ -2,10 +2,10 @@
 
 namespace HumanGuide.Core.Application.DTOs
 {
-    public class SetConnecteHumanDto
+    public class SetConnectedHumanDto
     {
         public HumanConnectionType ConnectionType { get; set; }
 
-        public int ConnecteHumanId { get; set; }
+        public int ConnectedHumanId { get; set; }
     }
 }

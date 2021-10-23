@@ -10,7 +10,7 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
         private ICityRepository cityRepository;
         private IPhoneRepository phoneRepository;
         private IHuman2PhoneRepository human2PhoneRepository;
-        private IConnecteHumanRepository connecteHumanRepository;
+        private IConnectedHumanRepository connectedHumanRepository;
 
         private readonly DataContext context;
         public UnitOfWork(DataContext context) => this.context = context;
@@ -22,6 +22,6 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
 
         public IHuman2PhoneRepository Human2PhoneRepository => human2PhoneRepository ??= new Human2PhoneRepository(context);
 
-        public IConnecteHumanRepository ConnecteHumanRepository => connecteHumanRepository ??= new ConnecteHumanRepository(context);
+        public IConnectedHumanRepository ConnectedHumanRepository => connectedHumanRepository ??= new ConnectedHumanRepository(context);
     }
 }

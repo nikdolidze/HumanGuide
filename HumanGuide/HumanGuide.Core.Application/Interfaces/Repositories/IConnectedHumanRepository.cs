@@ -2,7 +2,7 @@
 
 namespace HumanGuide.Core.Application.Interfaces.Repositories
 {
-    public interface IConnecteHumanRepository : IRepository<ConnecteHuman>
+    public interface IConnectedHumanRepository : IRepository<ConnectedHuman>
     {
     }
 }

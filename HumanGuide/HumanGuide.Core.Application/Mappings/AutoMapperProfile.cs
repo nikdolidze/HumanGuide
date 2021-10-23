@@ -17,13 +17,13 @@ namespace HumanGuide.Core.Application.Mappings
             //დროებითია ეს CreateMap
             CreateMap<CreateHumanCommand.Request, Human>()
             .ForMember(x => x.City, y => y.Ignore())
-            .ForMember(x => x.ConnecteHumans, y => y.Ignore());
+            .ForMember(x => x.BaseConnectedHumans, y => y.Ignore());
 
             CreateMap<SetHuman2PhoneDto, Human2Phone>();
 
             CreateMap<UpdateHumanCommand.UpdateRequest, Human>();
 
-            CreateMap<CreateConnectedHuman.CreateRequest, ConnecteHuman>();
+            CreateMap<CreateConnectedHuman.CreateRequest, ConnectedHuman>();
 
             CreateMap<Human, GetHumanDto>();
             CreateMap<City, GetCityDto>();
@@ -33,7 +33,7 @@ namespace HumanGuide.Core.Application.Mappings
                .ForMember(dest => dest.Type, opt => opt.MapFrom(src =>
                src.Type.Use(x => x == PhoneType.Home || x == PhoneType.Mobile ? x == PhoneType.Mobile ? "მობილური" : "სახლი" : "ოფისი")));
 
-            CreateMap<ConnecteHuman, GetConnectedHumanDto>();
+            CreateMap<ConnectedHuman, GetConnectedHumanDto>();
         }
 
     }

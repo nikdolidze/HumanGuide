@@ -2,6 +2,6 @@
 {
     public class GetConnectedHumanDto
     {
-        public GetHumanDto ConnecteHumans { get; set; }
+        public GetHumanDto ConnectedHumans { get; set; }
     }
 }

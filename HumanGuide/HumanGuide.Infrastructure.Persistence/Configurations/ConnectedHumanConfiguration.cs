@@ -4,17 +4,24 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HumanGuide.Infrastructure.Persistence.Configurations
 {
-    class ConnectedHumanConfiguration : IEntityTypeConfiguration<ConnecteHuman>
+    class ConnectedHumanConfiguration : IEntityTypeConfiguration<ConnectedHuman>
     {
-        public void Configure(EntityTypeBuilder<ConnecteHuman> builder)
+        public void Configure(EntityTypeBuilder<ConnectedHuman> builder)
         {
             builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
 
 
-            builder.HasOne(x => x.Humans)
-                .WithMany(x => x.ConnecteHumans)
-                .HasForeignKey(x => x.ConnecteHumanId)
+            builder.HasOne(x => x.Human)
+                .WithMany(x => x.Humans)
+                .HasForeignKey(x => x.HumanId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.BaseConnectedHuman)
+                .WithMany(x => x.BaseConnectedHumans)
+                .HasForeignKey(x => x.BaseConnectedHumanId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            ;
             // DOTO : თუ OnDelete(DeleteBehavior.NoAction-ს არ დავწერ მიგრაცია ურყტამს ერორს. გასარკვევი მაქვს საჭიროა თუ არა ეს მეთოდი/რატო არტყამს ერორს;
         }
     }

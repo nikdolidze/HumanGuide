@@ -22,13 +22,13 @@ namespace HumanGuide.Core.Application.Hepler
             }
             return imagePath;
         }
-        public static List<ConnecteHuman> CreateListOfConnecteHuman(int humanId, List<SetConnecteHumanDto> connecteHumans)
+        public static List<ConnectedHuman> CreateListOfConnectedHuman(int humanId, List<SetConnectedHumanDto> connectedHumans)
         {
-            List<ConnecteHuman> list = new();
+            List<ConnectedHuman> list = new();
 
-            foreach (var connecteHuman in connecteHumans)
+            foreach (var connectedHuman in connectedHumans)
             {
-                list.Add(new ConnecteHuman { HumanId = humanId, ConnecteHumanId = connecteHuman.ConnecteHumanId, ConnectionType = connecteHuman.ConnectionType });
+                list.Add(new ConnectedHuman { HumanId = humanId, BaseConnectedHumanId = connectedHuman.ConnectedHumanId, ConnectionType = connectedHuman.ConnectionType });
             }
             return list;
         }

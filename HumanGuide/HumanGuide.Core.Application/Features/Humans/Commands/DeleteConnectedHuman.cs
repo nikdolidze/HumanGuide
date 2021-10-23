@@ -24,10 +24,10 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             }
             public async Task<Unit> Handle(DeleteRequest request, CancellationToken cancellationToken)
             {
-                var connectedHuman = await unit.ConnecteHumanRepository.ReadAsync(request.Id);
+                var connectedHuman = await unit.ConnectedHumanRepository.ReadAsync(request.Id);
                 if (connectedHuman == null)
                     throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");
-                await unit.ConnecteHumanRepository.DeleteAsync(connectedHuman);
+                await unit.ConnectedHumanRepository.DeleteAsync(connectedHuman);
 
                 return Unit.Value;
             }

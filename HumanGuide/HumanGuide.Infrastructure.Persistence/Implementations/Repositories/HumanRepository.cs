@@ -16,7 +16,7 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
         private IQueryable<Human> Including =>
          this.context.Humans.Include(x => x.City)
             .Include(x => x.Human2Phones).ThenInclude(y => y.Phone)
-            .Include(x => x.ConnecteHumans);
+            .Include(x => x.BaseConnectedHumans);
 
         public override async Task<Human> ReadAsync(int id)
         {

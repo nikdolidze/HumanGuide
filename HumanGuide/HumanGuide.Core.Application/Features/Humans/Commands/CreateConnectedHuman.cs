@@ -15,7 +15,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         public class CreateRequest : IRequest
         {
             internal int HumanId { get; set; }
-            public int ConnecteHumanId { get; set; }
+            public int ConnectedHumanId { get; set; }
             public HumanConnectionType ConnectionType { get; set; }
             public void SetId(int id)
             {
@@ -37,17 +37,17 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 var human = await unit.HumanRepository.ReadAsync(request.HumanId);
                 if (human == null)
                     throw new EntityNotFoundException("ფიზიკური პირი ვერ მოიძებნა");
-                var connectedHuman = await unit.HumanRepository.CheckAsync(x => x.Id == request.ConnecteHumanId);
+                var connectedHuman = await unit.HumanRepository.CheckAsync(x => x.Id == request.ConnectedHumanId);
                 if (!connectedHuman)
                     throw new EntityNotFoundException("დაკავშირებული პირი დამატებული უნდა იყოს ფიზიკური პირების რეესტრში");
 
-                var connectedhuman = await unit.ConnecteHumanRepository.CheckAsync(x => x.HumanId == request.HumanId && x.ConnectionType == request.ConnectionType && x.ConnecteHumanId == request.ConnecteHumanId);
+                var connectedhuman = await unit.ConnectedHumanRepository.CheckAsync(x => x.HumanId == request.HumanId && x.ConnectionType == request.ConnectionType && x.BaseConnectedHumanId == request.ConnectedHumanId);
                 if (connectedhuman)
                     throw new EntityNotFoundException("დაკავშირებული უკვე დამატებულია");
 
-                var connectedHumanDb = mapper.Map<ConnecteHuman>(request);
+                var connectedHumanDb = mapper.Map<ConnectedHuman>(request);
                 connectedHumanDb.HumanId = request.HumanId;
-                await unit.ConnecteHumanRepository.CreateAsync(connectedHumanDb);
+                await unit.ConnectedHumanRepository.CreateAsync(connectedHumanDb);
                 return Unit.Value;
             }
         }

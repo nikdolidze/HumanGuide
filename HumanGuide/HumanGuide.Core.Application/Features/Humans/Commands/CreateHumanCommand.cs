@@ -18,7 +18,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         public class Request : CommonRequest
         {
 
-            public ICollection<SetConnecteHumanDto> ConnecteHumans { get; set; }
+            public ICollection<SetConnectedHumanDto> ConnectedHumans { get; set; }
         }
         public class Handler : IRequestHandler<Request>
         {
@@ -54,11 +54,11 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 
                 }
 
-                if (request.ConnecteHumans != null && request.ConnecteHumans.Any())
+                if (request.ConnectedHumans != null && request.ConnectedHumans.Any())
                 {
                     // ConnectedHumans-ის შექმნა
-                    var connectedHumans = HelperClass.CreateListOfConnecteHuman(human.Id, request.ConnecteHumans.ToList());
-                    await unit.ConnecteHumanRepository.CreaRangeteAsync(connectedHumans);
+                    var connectedHumans = HelperClass.CreateListOfConnectedHuman(human.Id, request.ConnectedHumans.ToList());
+                    await unit.ConnectedHumanRepository.CreaRangeteAsync(connectedHumans);
                 }
 
 
