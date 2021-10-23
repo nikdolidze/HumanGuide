@@ -1,12 +1,6 @@
 ﻿using HumanGuide.Core.Application.Interfaces;
 using MediatR;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -35,7 +29,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 
                 // DOTO Reflection-ით უნდა წამოვიღო Human-ის კოლექციის ტიპის ველები და თუ ბრმა აქვს reqquest.id-ისთან წავშალო
 
-              
+
                 return Unit.Value;
             }
 

@@ -36,7 +36,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 var human = await unit.HumanRepository.ReadAsync(request.HumanId);
                 if (human == null)
                     throw new Exception("ფიზიკური პირი ვერ მოიძებნა");
-                var connectedHuman = await unit.HumanRepository.CheckAsync(x=>x.Id==request.ConnecteHumanId);
+                var connectedHuman = await unit.HumanRepository.CheckAsync(x => x.Id == request.ConnecteHumanId);
                 if (!connectedHuman)
                     throw new Exception("დაკავშირებული პირი დამატებული უნდა იყოს ფიზიკური პირების რეესტრში");
 

@@ -1,4 +1,6 @@
-﻿using HumanGuide.Core.Application.Features.Humans.Commands;
+﻿using HumanGuide.Core.Application.DTOs;
+using HumanGuide.Core.Application.Features.Humans.Commands;
+using HumanGuide.Core.Application.Features.Humans.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -52,5 +54,11 @@ namespace HumanGuide.Presentation.WebApi.Controllers
         {
             await mediator.Send(new DeleteHumanCommand.Request(id));
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<GetHumanDto> Get([FromRoute] int id) =>
+            await mediator.Send(new GetHumansQuery.Request(id));
+
     }
 }
