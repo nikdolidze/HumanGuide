@@ -17,7 +17,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         public string LastName { get; set; }
         public Gender Gender { get; set; }
         public string PersonalNo { get; set; }
-        public DateTime DarteOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public int CityId { get; set; }
         public ICollection<SetPhoneDto> Phones { get; set; }
     }
@@ -47,7 +47,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                    .Length(11).WithMessage("პირადი ნომერი უნდა შედგებოდეს 11 სიმბოლოსგან")
                     .Matches("^[0-9]*$").WithMessage("პირადი ნომერი უნდა შედგებოდეს მხოლოდ ციფრებისგან");
 
-            RuleFor(x => x.DarteOfBirth)
+            RuleFor(x => x.DateOfBirth)
                    .Must(d => d.AddYears(18) < DateTime.Now).WithMessage("ფიზიკური პირი უნდა იყოს მინიმუმ 18 წლის");
 
             RuleFor(x => x.CityId)

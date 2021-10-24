@@ -1,4 +1,5 @@
-﻿using HumanGuide.Core.Application.Interfaces.Repositories;
+﻿using HumanGuide.Core.Application.Common;
+using HumanGuide.Core.Application.Interfaces.Repositories;
 using HumanGuide.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -19,6 +20,16 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
             .Include(x => x.BaseConnectedHumans)
                 .ThenInclude(x => x.BaseConnectedHuman)
                     .ThenInclude(x => x.Human2Phones).ThenInclude(x => x.Phone);
+
+        public async Task<Pagination<Human>> FilterAsync(int pageIndex, int pageSize, string PersonalNo = null, string firstName = null, string lastName = null)
+        {
+            var humans = this.Including.Where(x =>
+                          (PersonalNo == null || x.PersonalNo.Contains(PersonalNo)) &&
+                          (firstName == null || x.FirstName.Contains(firstName)) &&
+                          (lastName == null || x.LastName.Contains(lastName)));
+
+            return await Pagination<Human>.CreateAsync(humans, pageIndex, pageSize);
+        }
 
         public override async Task<Human> ReadAsync(int id)
         {

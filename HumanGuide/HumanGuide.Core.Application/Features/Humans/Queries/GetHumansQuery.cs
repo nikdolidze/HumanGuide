@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using HumanGuide.Core.Application.DTOs;
-using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,14 +13,16 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
 {
     public class GetHumansQuery
     {
-        public class Request : IRequest<GetHumanDto>
+        public class GetAllRequest : IRequest<GetPaginationDto<GetHumanDto>>
         {
-            public int Id { get; private set; }
+            public int PageIndex { get; set; } = 1;
+            public int PageSize { get; set; } = 10;
 
-            public Request(int id) => this.Id = id;
-
+            public string PersonalNo { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
         }
-        public class Handler : IRequestHandler<Request, GetHumanDto>
+        public class Handler : IRequestHandler<GetAllRequest, GetPaginationDto<GetHumanDto>>
         {
             private readonly IUnitOfWork unit;
             private readonly IMapper mapper;
@@ -27,13 +32,11 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
                 this.unit = unit;
                 this.mapper = mapper;
             }
-            public async Task<GetHumanDto> Handle(Request request, CancellationToken cancellationToken)
+            public async Task<GetPaginationDto<GetHumanDto>> Handle(GetAllRequest request, CancellationToken cancellationToken)
             {
-                var human = await unit.HumanRepository.ReadAsync(request.Id);
-                if (human == null)
-                    throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");
+                var humans = await unit.HumanRepository.FilterAsync(request.PageIndex, request.PageSize,request.PersonalNo,request.FirstName,request.LastName);
 
-                return await Task.FromResult(mapper.Map<GetHumanDto>(human));
+                return mapper.Map<GetPaginationDto<GetHumanDto>>(humans);
             }
         }
     }

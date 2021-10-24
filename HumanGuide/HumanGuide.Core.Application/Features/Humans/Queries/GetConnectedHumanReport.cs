@@ -27,8 +27,8 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
             }
             public async Task<List<Relation>> Handle(Request request, CancellationToken cancellationToken)
             {
-                ;
-                var connectedHumans = (await unit.ConnectedHumanRepository.ReadAsync());
+               
+                var connectedHumans = await unit.ConnectedHumanRepository.ReadAsync();
 
                 var report = connectedHumans.GroupBy(x => x.HumanId).Select(groupedByHumanId =>
                 {

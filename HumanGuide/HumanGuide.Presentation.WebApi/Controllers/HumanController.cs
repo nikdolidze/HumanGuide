@@ -18,25 +18,22 @@ namespace HumanGuide.Presentation.WebApi.Controllers
         public HumanController(IMediator mediator) =>
             this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
+
         [HttpPost]
-        public async Task Create([FromBody] CreateHumanCommand.Request request)
-        {
+        public async Task Create([FromBody] CreateHumanCommand.Request request) =>
             await mediator.Send(request);
-        }
+
 
         [HttpPut]
-        public async Task Update([FromBody] UpdateHumanCommand.UpdateRequest request)
-        {
+        public async Task Update([FromBody] UpdateHumanCommand.UpdateRequest request) =>
             await mediator.Send(request);
-        }
+
 
         [HttpPut]
         [Route("UploadImage")]
-        public async Task UploadImage([FromForm] UploadImageCommand.Requset requset)
-        {
+        public async Task UploadImage([FromForm] UploadImageCommand.Requset requset) =>
             await mediator.Send(requset);
 
-        }
 
         [HttpPut("CreateConnectedHuman/{humanId}")]
         public async Task CreateConnectedHuman(int humanId, [FromBody] CreateConnectedHuman.CreateRequest request)
@@ -45,27 +42,29 @@ namespace HumanGuide.Presentation.WebApi.Controllers
             await mediator.Send(request);
         }
 
+
         [HttpDelete("DeleteConnectedHuman/{id}")]
-        public async Task DeleteConnectedHuman(int id)
-        {
+        public async Task DeleteConnectedHuman(int id) =>
             await mediator.Send(new DeleteConnectedHuman.DeleteRequest(id));
-        }
+
 
         [HttpDelete("DeleteHuman/{id}")]
-        public async Task DeleteHuman(int id)
-        {
-            await mediator.Send(new DeleteHumanCommand.Request(id));
-        }
+        public async Task DeleteHuman(int id) =>
+             await mediator.Send(new DeleteHumanCommand.Request(id));
 
 
         [HttpGet("{id}")]
         public async Task<GetHumanDto> Get([FromRoute] int id) =>
-            await mediator.Send(new GetHumansQuery.Request(id));
+            await mediator.Send(new GetHumanQuery.Request(id));
 
-        [HttpGet("Repost")]
-        public async Task<List<Relation>> Get()
-        {
-          return   await mediator.Send(new GetConnectedHumanReport.Request());
-        }
+
+        [HttpGet("Report")]
+        public async Task<List<Relation>> Get() =>
+            await mediator.Send(new GetConnectedHumanReport.Request());
+
+
+        [HttpGet("GetAllHuman")]
+        public async Task<IEnumerable<GetHumanDto>> GetAll([FromQuery] GetHumansQuery.GetAllRequest request) =>
+            (await mediator.Send(request)).Items;
     }
 }

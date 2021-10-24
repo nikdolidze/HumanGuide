@@ -31,7 +31,8 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             }
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
-                // TODO დასამატებელი შეზღუდვები და როლბექი
+                
+
 
                 // ქალაქის გადამოწმება ცნობარში
                 var cityDb = await unit.CityRepository.ReadAsync(request.CityId);
@@ -50,6 +51,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                     // Human2Phones-ის შექმნა
                     var human2Phones = HelperClass.CreateListOfHuman2Phone(human.Id, phones.Select(x => x.Id).ToList());
                     await unit.Human2PhoneRepository.CreaRangeteAsync(human2Phones);
+                    
 
                 }
 
@@ -59,7 +61,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                     var connectedHumans = HelperClass.CreateListOfConnectedHuman(human.Id, request.ConnectedHumans.ToList());
                     await unit.ConnectedHumanRepository.CreaRangeteAsync(connectedHumans);
                 }
-
 
 
 

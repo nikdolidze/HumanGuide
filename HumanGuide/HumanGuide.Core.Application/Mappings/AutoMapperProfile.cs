@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HumanGuide.Core.Application.Common;
 using HumanGuide.Core.Application.DTOs;
 using HumanGuide.Core.Application.Features.Humans.Commands;
 using HumanGuide.Core.Application.Hepler.Extenssion;
@@ -12,28 +13,29 @@ namespace HumanGuide.Core.Application.Mappings
         public AutoMapperProfile()
         {
             CreateMap<SetPhoneDto, Phone>().ReverseMap();
+            CreateMap<Phone, GetPhoneDto>()
+              .ForMember(dest => dest.Type, opt => opt.MapFrom(src =>
+              src.Type.Use(x => x == PhoneType.Home || x == PhoneType.Mobile ? x == PhoneType.Mobile ? "მობილური" : "სახლი" : "ოფისი")));
+
             CreateMap<SetCityDto, City>();
-
-            //დროებითია ეს CreateMap
-            CreateMap<CreateHumanCommand.Request, Human>()
-            .ForMember(x => x.City, y => y.Ignore())
-            .ForMember(x => x.BaseConnectedHumans, y => y.Ignore());
-
-            CreateMap<SetHuman2PhoneDto, Human2Phone>();
-
-            CreateMap<UpdateHumanCommand.UpdateRequest, Human>();
-
-            CreateMap<CreateConnectedHuman.CreateRequest, ConnectedHuman>();
-
-            CreateMap<Human, GetHumanDto>();
             CreateMap<City, GetCityDto>();
 
-            CreateMap<Human2Phone, GetHuman2PhoneDto>();
-            CreateMap<Phone, GetPhoneDto>()
-               .ForMember(dest => dest.Type, opt => opt.MapFrom(src =>
-               src.Type.Use(x => x == PhoneType.Home || x == PhoneType.Mobile ? x == PhoneType.Mobile ? "მობილური" : "სახლი" : "ოფისი")));
 
+            CreateMap<CreateHumanCommand.Request, Human>()
+            .ForMember(x => x.City, y => y.Ignore()).ForMember(x => x.BaseConnectedHumans, y => y.Ignore());
+            CreateMap<UpdateHumanCommand.UpdateRequest, Human>();
+            CreateMap<Human, GetHumanDto>();
+
+
+            CreateMap<SetHuman2PhoneDto, Human2Phone>();
+            CreateMap<Human2Phone, GetHuman2PhoneDto>();
+
+
+            CreateMap<CreateConnectedHuman.CreateRequest, ConnectedHuman>();
             CreateMap<ConnectedHuman, GetConnectedHumanDto>();
+
+            CreateMap(typeof(Pagination<>), typeof(GetPaginationDto<>));
+
         }
 
     }
