@@ -2,7 +2,7 @@
 
 
 namespace HumanGuide.Core.Application.Common
-{ 
+{
     public static class Result
     {
         public static object Success(bool isSuccess, params string[] messages) => new

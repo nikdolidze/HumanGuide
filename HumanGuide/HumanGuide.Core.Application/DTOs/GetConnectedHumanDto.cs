@@ -2,6 +2,7 @@
 {
     public class GetConnectedHumanDto
     {
-        public GetHumanDto ConnectedHumans { get; set; }
+        public int Id { get; set; }
+        public GetHumanDto BaseConnectedHuman { get; set; }
     }
 }

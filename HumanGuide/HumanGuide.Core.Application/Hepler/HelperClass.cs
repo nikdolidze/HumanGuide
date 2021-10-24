@@ -28,7 +28,7 @@ namespace HumanGuide.Core.Application.Hepler
 
             foreach (var connectedHuman in connectedHumans)
             {
-                list.Add(new ConnectedHuman { HumanId = humanId, BaseConnectedHumanId = connectedHuman.ConnectedHumanId, ConnectionType = connectedHuman.ConnectionType });
+                list.Add(new ConnectedHuman { HumanId = humanId, BaseConnectedHumanId = connectedHuman.BaseConnectedHumanId, ConnectionType = connectedHuman.ConnectionType });
             }
             return list;
         }

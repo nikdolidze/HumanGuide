@@ -2,7 +2,6 @@
 using HumanGuide.Core.Domain.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HumanGuide.Core.Domain.Entities
 {
@@ -17,13 +16,7 @@ namespace HumanGuide.Core.Domain.Entities
         public int CityId { get; set; }
         public City City { get; set; }
         public ICollection<Human2Phone> Human2Phones { get; set; }
-     //   [InverseProperty("BaseConnectedHuman")]
         public ICollection<ConnectedHuman> BaseConnectedHumans { get; set; }
-
-     //   [InverseProperty("Human")]
-
-        public ICollection<ConnectedHuman> Humans { get; set; }
-
     }
 
 }

@@ -6,6 +6,6 @@ namespace HumanGuide.Core.Application.DTOs
     {
         public HumanConnectionType ConnectionType { get; set; }
 
-        public int ConnectedHumanId { get; set; }
+        public int BaseConnectedHumanId { get; set; }
     }
 }

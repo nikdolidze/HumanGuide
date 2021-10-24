@@ -1,7 +1,6 @@
 ﻿using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

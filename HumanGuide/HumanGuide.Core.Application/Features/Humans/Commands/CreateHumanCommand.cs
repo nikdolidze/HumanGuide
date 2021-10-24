@@ -5,7 +5,6 @@ using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Domain.Entities;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

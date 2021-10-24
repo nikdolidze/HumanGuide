@@ -16,18 +16,15 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
         private IQueryable<Human> Including =>
          this.context.Humans.Include(x => x.City)
             .Include(x => x.Human2Phones).ThenInclude(y => y.Phone)
-            .Include(x => x.BaseConnectedHumans);
+            .Include(x => x.BaseConnectedHumans)
+                .ThenInclude(x => x.BaseConnectedHuman)
+                    .ThenInclude(x => x.Human2Phones).ThenInclude(x => x.Phone);
 
         public override async Task<Human> ReadAsync(int id)
         {
             return await this.Including.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-
-        //   public override async Task<IEnumerable<Human2Phone>> ReadAsync(Expression<Func<Human2Phone, bool>> predicate)
-        //   {
-        //       return await this.Including.Where(predicate).ToListAsync();
-        //   }
     }
 
 }

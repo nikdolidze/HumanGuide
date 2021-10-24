@@ -4,7 +4,6 @@ using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Domain.Entities;
 using HumanGuide.Core.Domain.Enums;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,7 +14,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         public class CreateRequest : IRequest
         {
             internal int HumanId { get; set; }
-            public int ConnectedHumanId { get; set; }
+            public int BaseConnectedHumanId { get; set; }
             public HumanConnectionType ConnectionType { get; set; }
             public void SetId(int id)
             {
@@ -37,11 +36,11 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 var human = await unit.HumanRepository.ReadAsync(request.HumanId);
                 if (human == null)
                     throw new EntityNotFoundException("ფიზიკური პირი ვერ მოიძებნა");
-                var connectedHuman = await unit.HumanRepository.CheckAsync(x => x.Id == request.ConnectedHumanId);
+                var connectedHuman = await unit.HumanRepository.CheckAsync(x => x.Id == request.BaseConnectedHumanId);
                 if (!connectedHuman)
                     throw new EntityNotFoundException("დაკავშირებული პირი დამატებული უნდა იყოს ფიზიკური პირების რეესტრში");
 
-                var connectedhuman = await unit.ConnectedHumanRepository.CheckAsync(x => x.HumanId == request.HumanId && x.ConnectionType == request.ConnectionType && x.BaseConnectedHumanId == request.ConnectedHumanId);
+                var connectedhuman = await unit.ConnectedHumanRepository.CheckAsync(x => x.HumanId == request.HumanId && x.ConnectionType == request.ConnectionType && x.BaseConnectedHumanId == request.BaseConnectedHumanId);
                 if (connectedhuman)
                     throw new EntityNotFoundException("დაკავშირებული უკვე დამატებულია");
 

@@ -14,6 +14,8 @@ namespace HumanGuide.Core.Application.DTOs
         public string ImageAddress { get; set; }
         public GetCityDto City { get; set; }
         public ICollection<GetHuman2PhoneDto> Human2Phones { get; set; }
-        public ICollection<GetConnectedHumanDto> ConnectedHumans { get; set; }
+        public ICollection<GetConnectedHumanDto> BaseConnectedHumans { get; set; }
     }
+
+
 }

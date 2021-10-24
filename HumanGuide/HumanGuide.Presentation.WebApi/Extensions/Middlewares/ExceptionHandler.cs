@@ -1,7 +1,6 @@
 ﻿using HumanGuide.Core.Application.Common;
 using HumanGuide.Core.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;

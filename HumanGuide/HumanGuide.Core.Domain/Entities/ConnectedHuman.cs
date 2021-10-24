@@ -1,6 +1,5 @@
 ﻿using HumanGuide.Core.Domain.Basics;
 using HumanGuide.Core.Domain.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HumanGuide.Core.Domain.Entities
 {

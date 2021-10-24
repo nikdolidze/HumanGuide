@@ -4,7 +4,6 @@ using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading;
 using System.Threading.Tasks;

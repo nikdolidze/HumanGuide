@@ -12,12 +12,12 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
 
 
             builder.HasOne(x => x.Human)
-                .WithMany(x => x.Humans)
+                .WithMany(x => x.BaseConnectedHumans)
                 .HasForeignKey(x => x.HumanId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.BaseConnectedHuman)
-                .WithMany(x => x.BaseConnectedHumans)
+                .WithMany()
                 .HasForeignKey(x => x.BaseConnectedHumanId)
                 .OnDelete(DeleteBehavior.NoAction);
 

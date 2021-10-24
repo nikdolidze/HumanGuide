@@ -3,10 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HumanGuide.Infrastructure.Logger
 {
@@ -14,7 +10,7 @@ namespace HumanGuide.Infrastructure.Logger
     {
         public static void AddLoggerLayer(this IServiceCollection services, IConfiguration configuration)
         {
-           
+
 
             var logDB = configuration.GetConnectionString("DefaultConnection");
 
@@ -28,7 +24,7 @@ namespace HumanGuide.Infrastructure.Logger
                 BatchPeriod = new TimeSpan(0, 0, 10)
             };
 
-           
+
 
             Log.Logger = new LoggerConfiguration()
                     .ReadFrom.Configuration(configuration)
