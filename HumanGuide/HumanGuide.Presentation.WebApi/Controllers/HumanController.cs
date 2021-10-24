@@ -4,7 +4,9 @@ using HumanGuide.Core.Application.Features.Humans.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using static HumanGuide.Core.Application.Features.Humans.Queries.GetConnectedHumanReport;
 
 namespace HumanGuide.Presentation.WebApi.Controllers
 {
@@ -60,5 +62,10 @@ namespace HumanGuide.Presentation.WebApi.Controllers
         public async Task<GetHumanDto> Get([FromRoute] int id) =>
             await mediator.Send(new GetHumansQuery.Request(id));
 
+        [HttpGet("Repost")]
+        public async Task<List<Relation>> Get()
+        {
+          return   await mediator.Send(new GetConnectedHumanReport.Request());
+        }
     }
 }
