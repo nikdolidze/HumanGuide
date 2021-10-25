@@ -2,6 +2,7 @@
 using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
+using HumanGuide.Core.Application.Interfaces.Services;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,11 +24,13 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         {
             private readonly IUnitOfWork unit;
             private readonly IMapper mapper;
+            private readonly IImageService imageService;
 
-            public Handler(IUnitOfWork unit, IMapper mapper)
+            public Handler(IUnitOfWork unit, IMapper mapper, IImageService imageService)
             {
                 this.unit = unit;
                 this.mapper = mapper;
+                this.imageService = imageService;
             }
 
             public async Task<Unit> Handle(Requset request, CancellationToken cancellationToken)
@@ -37,7 +40,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 if (humanDb == null)
                     throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");
 
-                humanDb.ImageAddress = (await HelperClass.UploadImage(request.Image));
+                humanDb.ImageAddress = await imageService.UploadImage(request.Image);
                 await unit.HumanRepository.UpdateAsync(humanDb);
 
                 return Unit.Value;
