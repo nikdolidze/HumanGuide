@@ -8,8 +8,9 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<ConnectedHuman> builder)
         {
-            builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
+            builder.ToTable("ConnectedHumans");
 
+            builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
 
             builder.HasOne(x => x.Human)
                 .WithMany(x => x.BaseConnectedHumans)
