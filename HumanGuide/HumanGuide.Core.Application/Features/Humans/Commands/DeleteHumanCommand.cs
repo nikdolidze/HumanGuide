@@ -1,6 +1,7 @@
 ﻿using HumanGuide.Core.Application.Exceptions;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,8 +28,11 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 if (human == null)
                     throw new EntityNotFoundException("მიუთითეთ აიდი ბენეფიციარი სწორად");
 
-                // DOTO Reflection-ით უნდა წამოვიღო Human-ის კოლექციის ტიპის ველები და თუ ბრმა აქვს reqquest.id-ისთან წავშალო
+                await unit.HumanRepository.DeleteAsync(human);
 
+                var humanInConnectedhuman = await unit.ConnectedHumanRepository.ReadAsync(x => x.BaseConnectedHumanId == request.Id);
+                if (humanInConnectedhuman.Any())
+                    await unit.ConnectedHumanRepository.DeleteRangeAsync(humanInConnectedhuman);
 
                 return Unit.Value;
             }

@@ -19,6 +19,7 @@ namespace HumanGuide.Core.Application.Interfaces
 
         Task<int> DeleteAsync(int id);
         Task<int> DeleteAsync(TEntity entity);
+        Task<int> DeleteRangeAsync(IEnumerable<TEntity> entity);
 
         Task<bool> CheckAsync(Expression<Func<TEntity, bool>> predicate);
 

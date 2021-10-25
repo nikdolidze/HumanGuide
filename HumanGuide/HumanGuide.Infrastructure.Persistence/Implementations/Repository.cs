@@ -63,6 +63,11 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations
             context.Set<TEntity>().Remove(entity);
             return await context.SaveChangesAsync();
         }
+        public virtual async Task<int> DeleteRangeAsync(IEnumerable<TEntity> entity)
+        {
+            context.Set<TEntity>().RemoveRange(entity);
+            return await context.SaveChangesAsync();
+        }
         // check
         public virtual async Task<bool> CheckAsync(Expression<Func<TEntity, bool>> predicate)
         {

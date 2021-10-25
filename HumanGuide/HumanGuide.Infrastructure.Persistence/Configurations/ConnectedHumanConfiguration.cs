@@ -14,12 +14,12 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
             builder.HasOne(x => x.Human)
                 .WithMany(x => x.BaseConnectedHumans)
                 .HasForeignKey(x => x.HumanId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.BaseConnectedHuman)
                 .WithMany()
                 .HasForeignKey(x => x.BaseConnectedHumanId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             ;
             // DOTO : თუ OnDelete(DeleteBehavior.NoAction-ს არ დავწერ მიგრაცია ურყტამს ერორს. გასარკვევი მაქვს საჭიროა თუ არა ეს მეთოდი/რატო არტყამს ერორს;
