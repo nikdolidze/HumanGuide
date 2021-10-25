@@ -22,7 +22,7 @@ namespace HumanGuide.Core.Application.Mappings
 
 
             CreateMap<CreateHumanCommand.Request, Human>()
-            .ForMember(x => x.City, y => y.Ignore()).ForMember(x => x.BaseConnectedHumans, y => y.Ignore());
+            .ForMember(x => x.BaseConnectedHumans, y => y.Ignore());
             CreateMap<UpdateHumanCommand.UpdateRequest, Human>();
             CreateMap<Human, GetHumanDto>();
 

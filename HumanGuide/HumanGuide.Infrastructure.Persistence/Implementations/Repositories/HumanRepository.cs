@@ -21,10 +21,10 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
                 .ThenInclude(x => x.BaseConnectedHuman)
                     .ThenInclude(x => x.Human2Phones).ThenInclude(x => x.Phone);
 
-        public async Task<Pagination<Human>> FilterAsync(int pageIndex, int pageSize, string PersonalNo = null, string firstName = null, string lastName = null)
+        public async Task<Pagination<Human>> FilterAsync(int pageIndex, int pageSize, string personalNo = null, string firstName = null, string lastName = null)
         {
             var humans = this.Including.Where(x =>
-                          (PersonalNo == null || x.PersonalNo.Contains(PersonalNo)) &&
+                          (personalNo == null || x.PersonalNo.Contains(personalNo)) &&
                           (firstName == null || x.FirstName.Contains(firstName)) &&
                           (lastName == null || x.LastName.Contains(lastName)));
 

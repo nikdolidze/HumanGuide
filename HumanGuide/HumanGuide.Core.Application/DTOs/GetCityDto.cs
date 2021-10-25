@@ -1,8 +1,7 @@
 ﻿namespace HumanGuide.Core.Application.DTOs
 {
-    public class GetCityDto
+    public class GetCityDto : SetCityDto
     {
         public int id { get; set; }
-        public string Name { get; set; }
     }
 }

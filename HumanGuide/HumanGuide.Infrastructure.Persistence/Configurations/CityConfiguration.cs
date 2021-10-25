@@ -8,6 +8,8 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<City> builder)
         {
+            builder.ToTable("Cities");
+
             builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
 
             builder.Property(x => x.Name).IsRequired();

@@ -48,9 +48,9 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                     {
                         if (newPhone.Type == phoneDb.Type)
                         {
-                            var PhoneDb = await unit.PhoneRepository.ReadAsync(phoneDb.Id);
-                            PhoneDb.Number = newPhone.Number;
-                            await unit.PhoneRepository.UpdateAsync(PhoneDb);
+                            var phone = await unit.PhoneRepository.ReadAsync(phoneDb.Id);
+                            phone.Number = newPhone.Number;
+                            await unit.PhoneRepository.UpdateAsync(phone);
                         }
                     }
                 }

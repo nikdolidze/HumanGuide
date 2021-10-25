@@ -8,6 +8,8 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Human2Phone> builder)
         {
+            builder.ToTable("Human2Phones");
+
             builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
         }
     }

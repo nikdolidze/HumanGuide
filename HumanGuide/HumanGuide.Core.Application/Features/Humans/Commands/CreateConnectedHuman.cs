@@ -45,7 +45,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                     throw new EntityNotFoundException("დაკავშირებული უკვე დამატებულია");
 
                 var connectedHumanDb = mapper.Map<ConnectedHuman>(request);
-                connectedHumanDb.HumanId = request.HumanId;
                 await unit.ConnectedHumanRepository.CreateAsync(connectedHumanDb);
                 return Unit.Value;
             }

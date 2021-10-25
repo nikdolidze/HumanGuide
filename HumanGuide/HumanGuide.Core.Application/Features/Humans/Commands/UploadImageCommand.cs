@@ -22,13 +22,11 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         public class Handler : IRequestHandler<Requset>
         {
             private readonly IUnitOfWork unit;
-            private readonly IMapper mapper;
             private readonly IImageService imageService;
 
-            public Handler(IUnitOfWork unit, IMapper mapper, IImageService imageService)
+            public Handler(IUnitOfWork unit,  IImageService imageService)
             {
                 this.unit = unit;
-                this.mapper = mapper;
                 this.imageService = imageService;
             }
 

@@ -8,6 +8,9 @@ namespace HumanGuide.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Human> builder)
         {
+            builder.ToTable("Humans");
+
+
             builder.HasQueryFilter(x => !x.DateDeleted.HasValue);
 
 
