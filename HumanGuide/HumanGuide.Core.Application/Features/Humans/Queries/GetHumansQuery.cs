@@ -2,10 +2,6 @@
 using HumanGuide.Core.Application.DTOs;
 using HumanGuide.Core.Application.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,7 +30,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
             }
             public async Task<GetPaginationDto<GetHumanDto>> Handle(GetAllRequest request, CancellationToken cancellationToken)
             {
-                var humans = await unit.HumanRepository.FilterAsync(request.PageIndex, request.PageSize,request.PersonalNo,request.FirstName,request.LastName);
+                var humans = await unit.HumanRepository.FilterAsync(request.PageIndex, request.PageSize, request.PersonalNo, request.FirstName, request.LastName);
 
                 return mapper.Map<GetPaginationDto<GetHumanDto>>(humans);
             }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using HumanGuide.Core.Application.Exceptions;
-using HumanGuide.Core.Application.Hepler;
 using HumanGuide.Core.Application.Interfaces;
 using HumanGuide.Core.Application.Interfaces.Services;
 using MediatR;

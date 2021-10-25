@@ -1,11 +1,8 @@
 ﻿using HumanGuide.Core.Application.Interfaces;
-using HumanGuide.Core.Domain.Entities;
 using HumanGuide.Core.Domain.Enums;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +24,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
             }
             public async Task<List<Relation>> Handle(Request request, CancellationToken cancellationToken)
             {
-               
+
                 var connectedHumans = await unit.ConnectedHumanRepository.ReadAsync();
 
                 var report = connectedHumans.GroupBy(x => x.HumanId).Select(groupedByHumanId =>

@@ -43,8 +43,8 @@ namespace HumanGuide.Presentation.WebApi.Extensions.Middlewares
                     statusCode = (int)e.StatusCode;
                     break;
                 case Exception _:
-                    exception = new Exception("Internal Server Error");
                     Serilog.Log.Error(exception, exception.Message);
+                    exception = new Exception("Internal Server Error");
                     break;
             }
 

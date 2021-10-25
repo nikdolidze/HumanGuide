@@ -54,10 +54,25 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                .MustAsync(IfExistCity).WithMessage("მიუთითეთ ქალაქი სწორად");
 
             RuleFor(x => x.Phones.Select(x => x.Number))
-                .Must(ValidatePhoneNumbe).WithMessage("ნომერი უნდა შეიცავდეს მინიმუმ 4 და მაქსიმუმ 50 სიმბოლოს");
+                .Must(ValidatePhoneNumber).WithMessage("ნომერი უნდა შეიცავდეს მინიმუმ 4 და მაქსიმუმ 50 სიმბოლოს");
+
+            RuleFor(x => x).Must(MoreThanOneNumberOfSameType).WithMessage("თითიეულ ტელეფონის ტიპზე შეიძლება მხოლოდ 1 ნომრის არსებობა");
 
         }
-        private bool ValidatePhoneNumbe(IEnumerable<string> numbers)
+
+
+
+        private bool MoreThanOneNumberOfSameType(CommonRequest request)
+        {
+            var groupBytype = request.Phones.GroupBy(x => x.Type);
+            foreach (var item in groupBytype)
+            {
+                if (item.Count() > 1)
+                    return false;
+            }
+            return true;
+        }
+        private bool ValidatePhoneNumber(IEnumerable<string> numbers)
         {
             List<bool> list = new();
             foreach (var number in numbers)
@@ -67,10 +82,10 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
             return list.Any(x => x == true);
         }
 
-        private async Task<bool> IfExistCity(int cityId, CancellationToken cancellationToken)
-        {
-            return await unit.CityRepository.CheckAsync(x => x.Id == cityId);
-        }
+        private async Task<bool> IfExistCity(int cityId, CancellationToken cancellationToken) =>
+             await unit.CityRepository.CheckAsync(x => x.Id == cityId);
+
+
 
     }
 

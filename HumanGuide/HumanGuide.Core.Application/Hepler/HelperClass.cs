@@ -1,11 +1,6 @@
 ﻿using HumanGuide.Core.Application.DTOs;
 using HumanGuide.Core.Domain.Entities;
-using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HumanGuide.Core.Application.Hepler
 {
