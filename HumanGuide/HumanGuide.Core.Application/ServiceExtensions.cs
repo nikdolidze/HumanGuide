@@ -16,11 +16,12 @@ namespace HumanGuide.Core.Application
         {
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                var cultures = new List<CultureInfo> {
+                var cultures = new List<CultureInfo> 
+                {
                     new CultureInfo("en"),
-                     new CultureInfo("ru"),
+                    new CultureInfo("ru"),
                     new CultureInfo("ge")
-                            };
+                };
                 options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("ge");
                 options.SupportedCultures = cultures;
                 options.SupportedUICultures = cultures;
@@ -32,7 +33,6 @@ namespace HumanGuide.Core.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
         }
     }
 }

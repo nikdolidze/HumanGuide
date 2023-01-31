@@ -57,10 +57,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 .Must(ValidatePhoneNumber).WithMessage("ნომერი უნდა შეიცავდეს მინიმუმ 4 და მაქსიმუმ 50 სიმბოლოს");
 
             RuleFor(x => x).Must(MoreThanOneNumberOfSameType).WithMessage("თითიეულ ტელეფონის ტიპზე შეიძლება მხოლოდ 1 ნომრის არსებობა");
-
         }
-
-
 
         private bool MoreThanOneNumberOfSameType(CommonRequest request)
         {
@@ -75,18 +72,11 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         private bool ValidatePhoneNumber(IEnumerable<string> numbers)
         {
             List<bool> list = new();
-            foreach (var number in numbers)
-            {
-                list.Add(number.Length >= 4 && number.Length <= 50);
-            }
+            list.AddRange(numbers.Select(number => number.Length >= 4 && number.Length <= 50));
             return list.Any(x => x == true);
         }
 
         private async Task<bool> IfExistCity(int cityId, CancellationToken cancellationToken) =>
              await unit.CityRepository.CheckAsync(x => x.Id == cityId);
-
-
-
     }
-
 }

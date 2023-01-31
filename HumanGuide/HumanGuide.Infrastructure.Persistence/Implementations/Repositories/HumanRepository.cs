@@ -13,7 +13,6 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
         {
         }
 
-
         private IQueryable<Human> Including =>
          this.context.Humans.Include(x => x.City)
             .Include(x => x.Human2Phones).ThenInclude(y => y.Phone)
@@ -35,7 +34,5 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
         {
             return await this.Including.FirstOrDefaultAsync(x => x.Id == id);
         }
-
     }
-
 }

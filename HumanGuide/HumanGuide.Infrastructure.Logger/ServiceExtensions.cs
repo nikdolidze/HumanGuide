@@ -10,10 +10,7 @@ namespace HumanGuide.Infrastructure.Logger
     {
         public static void AddLoggerLayer(this IServiceCollection services, IConfiguration configuration)
         {
-
-
             var logDB = configuration.GetConnectionString("DefaultConnection");
-
 
             var sinkOpts = new MSSqlServerSinkOptions
             {
@@ -23,7 +20,6 @@ namespace HumanGuide.Infrastructure.Logger
                 BatchPostingLimit = 1000,
                 BatchPeriod = new TimeSpan(0, 0, 10)
             };
-
 
 
             Log.Logger = new LoggerConfiguration()

@@ -32,7 +32,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 
             public async Task<Unit> Handle(Requset request, CancellationToken cancellationToken)
             {
-
                 var humanDb = await unit.HumanRepository.ReadAsync(request.HumanId);
                 if (humanDb == null)
                     throw new EntityNotFoundException("ჩანაწერი ვერ მოიძებნა");

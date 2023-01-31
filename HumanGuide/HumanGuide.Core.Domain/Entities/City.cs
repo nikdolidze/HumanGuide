@@ -6,6 +6,7 @@ namespace HumanGuide.Core.Domain.Entities
     public class City : AuditableEntity
     {
         public string Name { get; set; }
+
         public List<Human> Humans { get; set; }
     }
 }

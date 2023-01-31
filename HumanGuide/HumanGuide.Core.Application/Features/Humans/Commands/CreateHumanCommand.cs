@@ -16,7 +16,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
     {
         public class Request : CommonRequest
         {
-
             public ICollection<SetConnectedHumanDto> ConnectedHumans { get; set; }
         }
         public class Handler : IRequestHandler<Request>
@@ -69,7 +68,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                     await unit.ConnectedHumanRepository.CreaRangeteAsync(connectedHumans);
                 }
 
-
                 return Unit.Value;
             }
         }
@@ -77,7 +75,5 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         {
             public Validator(IUnitOfWork unit) : base(unit) { }
         }
-
-
     }
 }

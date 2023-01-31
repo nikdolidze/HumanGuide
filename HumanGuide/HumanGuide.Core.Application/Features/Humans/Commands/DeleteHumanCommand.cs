@@ -36,8 +36,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 
                 return Unit.Value;
             }
-
         }
-
     }
 }

@@ -11,10 +11,5 @@ namespace HumanGuide.Core.Domain.Basics
         public virtual string UpdatedBy { get; set; }
         public virtual DateTime? DateDeleted { get; set; }
         public virtual string DeletedBy { get; set; }
-
-
-
-
-
     }
 }

@@ -16,12 +16,7 @@ namespace HumanGuide.Infrastructure.Persistence.Implementations.Repositories
         private IQueryable<Human2Phone> Including =>
          this.context.Human2Phone.Include(x => x.Phone);
 
-
-
-
         public override async Task<IEnumerable<Human2Phone>> ReadAsync(Expression<Func<Human2Phone, bool>> predicate)
-        {
-            return await this.Including.Where(predicate).ToListAsync();
-        }
+            => await this.Including.Where(predicate).ToListAsync();
     }
 }

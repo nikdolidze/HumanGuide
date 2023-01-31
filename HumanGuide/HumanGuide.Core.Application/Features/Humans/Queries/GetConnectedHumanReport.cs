@@ -12,7 +12,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
     {
         public class Request : IRequest<List<Relation>>
         {
-
         }
         public class Handler : IRequestHandler<Request, List<Relation>>
         {
@@ -24,7 +23,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
             }
             public async Task<List<Relation>> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var connectedHumans = await unit.ConnectedHumanRepository.ReadAsync();
 
                 var report = connectedHumans.GroupBy(x => x.HumanId).Select(groupedByHumanId =>
@@ -45,8 +43,8 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
                 Connections = connections;
                 HumanId = humanId;
             }
-            public int HumanId { get; set; }
-            public List<Connection> Connections { get; set; }
+            public int HumanId { get; private set; }
+            public List<Connection> Connections { get; private set; }
         }
 
         public class Connection
@@ -56,8 +54,8 @@ namespace HumanGuide.Core.Application.Features.Humans.Queries
                 Count = count;
                 HumanConnectionType = humanConnectionType;
             }
-            public int Count { get; set; }
-            public HumanConnectionType HumanConnectionType { get; set; }
+            public int Count { get; private set; }
+            public HumanConnectionType HumanConnectionType { get; private set; }
         }
     }
 }

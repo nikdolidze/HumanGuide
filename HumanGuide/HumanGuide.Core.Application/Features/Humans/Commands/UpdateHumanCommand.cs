@@ -15,7 +15,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
         public class UpdateRequest : CommonRequest
         {
             public int Id { get; set; }
-
         }
         public class Handler : IRequestHandler<UpdateRequest>
         {
@@ -35,8 +34,6 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
                 var existHumanRersonelNo = await unit.HumanRepository.ReadAsync(x => x.PersonalNo == request.PersonalNo);
                 if (existHumanRersonelNo.Count() > 1)
                     throw new EntityAlreadyExistException("ჩანაწერი იგივე პირადი ნომრით უკვე არსეობს");
-
-
 
 
                 var phonesDb = (await unit.Human2PhoneRepository.ReadAsync(x => x.HumanId == request.Id)).Select(x => x.Phone);
@@ -65,9 +62,7 @@ namespace HumanGuide.Core.Application.Features.Humans.Commands
 
                 RuleFor(x => x.Id).NotEqual(default(int)).WithMessage("აიდის მითითება აუცილებელია");
                                  //   .NotNull().WithMessage("გთხოთ მიიუთითოთ სახელი")
-
             }
         }
-       
     }
 }
